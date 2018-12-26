@@ -56,9 +56,7 @@ class Adventures extends React.Component {
       newadv.push(adventures[index]);
     }
     // const { forms } = this.state;
-    if (!this.state.edit){
       return (
-        IgorBackground(
           <View style={{ flex: 1 }}>
             <TabBarNavigation
               navigate = {() => { this.props.navigation.openDrawer() ; }}
@@ -79,29 +77,6 @@ class Adventures extends React.Component {
             />
           </View>
         )
-      );
-    }else{
-      return (
-        IgorBackground(
-          <View style={{ flex: 1 }}>
-            <TabBarNavigation
-              navigate = {() => { this.props.navigation.openDrawer() ; }}
-              edit = {() => { this.edit() ; }}
-              color = {colors.drawernavinactive}/>
-            <ScrollView>
-              {newadv ? newadv.map((adv, i) =>
-                <EditAdventure
-                  key={i}
-                  props={{
-                    ...adv,
-                    delete: () => this.deleteAdventure(adv),
-                    edit: () => this.editAdventure(adv)
-                  }}/>)
-                : null}
-            </ScrollView>
-          </View>
-        )
-      );
     }
   }
 }
