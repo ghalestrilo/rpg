@@ -41,6 +41,41 @@ const images = [
   corvali, krevast, coast, heartlands
 ];
 
+const rulesets = [
+  {
+    title: "Brute Wars",
+    authorID: 1,
+    icon: "http://www.myiconfinder.com/uploads/iconsets/1885a6e83769f02e9448d136e58d780f-pictures.png",
+
+    resources: [],
+    enemies: [],
+    powers: [],
+
+  },
+
+  {
+    title: "Honey Heist",
+    authorID: 1,
+    icon: "http://www.myiconfinder.com/uploads/iconsets/1885a6e83769f02e9448d136e58d780f-pictures.png",
+
+    resources: [],
+    enemies: [],
+    powers: [],
+
+  },
+
+  {
+    title: "Honey Heist",
+    authorID: 1,
+    icon: "http://www.myiconfinder.com/uploads/iconsets/1885a6e83769f02e9448d136e58d780f-pictures.png",
+
+    resources: [],
+    enemies: [],
+    powers: [],
+
+  }
+]
+
 class NewAdventureScreen extends React.Component {
   constructor(props){
     super(props);
