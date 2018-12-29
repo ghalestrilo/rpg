@@ -79,7 +79,6 @@ class Adventures extends React.Component {
         )
     }
   }
-}
 
 const mapStateToProps = (state) => ({
   adventures: state.adventures.list,
