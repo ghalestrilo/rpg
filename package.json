@@ -12,8 +12,9 @@
   },
   "dependencies": {
     "@babel/core": "^7.1.5",
+    "@react-navigation/core": "^3.0.2",
     "babel-eslint": "^10.0.1",
-    "expo": "^30.0.1",
+    "expo": "^30.0.2",
     "firebase": "^5.5.5",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
@@ -23,6 +24,7 @@
     "react-native-progress": "^3.5.0",
     "react-native-vector-icons": "^6.0.2",
     "react-navigation": "^2.16.0",
+    "react-navigation-hooks": "^1.0.0-alpha.2",
     "react-navigation-redux-helpers": "^2.0.6",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",

@@ -15,7 +15,6 @@ import style from "./style";
 import { IgorBackground } from "../Igor";
 import { Picker } from "../Picker";
 import { groupByType } from "../../util/groupBy";
-import { log } from "../../util/console";
 
 import Modal from "react-native-modal";
 
@@ -116,7 +115,7 @@ const CombatScreen = ({
     <View style={style.actionDrawer}>
       <Text style={style.playername}>Ações</Text>
       {
-        groupByType(log(player.actions) || [])
+        groupByType(player.actions || [])
           .map((action, i) =>
             <CombatAction
               key={`action${i}`}
