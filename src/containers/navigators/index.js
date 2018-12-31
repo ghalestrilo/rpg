@@ -1,8 +1,9 @@
 import {
   SignUpScreen, LoginScreen, StartScreen,
-  AccountScreen, AdventuresScreen, BooksScreen, ConfigurationsScreen,
-  NotificationsScreen, AdventureScreen,
-  CombatScreen, SessionScreen, EditAdventureScreen
+  AccountScreen, BooksScreen, ConfigurationsScreen, NotificationsScreen, 
+
+  AdventuresScreen, AdventureScreen, EditAdventureScreen,
+  CombatScreen, SessionScreen
 } from "../screens";
 // import Background from "../../images/background/background.png";
 import { colors } from "../../styles";
@@ -84,4 +85,4 @@ const AppNavigator = createSwitchNavigator(
     initialRouteName: "LoginStack"
   },
 );
-export { AppNavigator, LoginStack };
+export default AppNavigator;
