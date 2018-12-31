@@ -8,86 +8,77 @@ import {
 
 import {
   Adventure,
-  Fab,
-  TabBarNavigation,
-  EditAdventure,
-  IgorBackground
+  Fab
 } from "../../../components/Igor";
-import { colors } from "../../../styles";
-import { pickAdventure, setEditMode } from "../../../reducers/adv/index";
-import { getAdventures, delAdventure } from "../../../actions/adventure";
+
+import {
+  chooseAdventure,
+  getAdventures,
+  deleteAdventure,
+  newAdventure
+} from "../../../actions/adventure";
 
 const newAdventureImage = require("../../../images/buttons/nova-aventura.png");
 
 class Adventures extends React.Component {
-  state = {
-    edit: false
-  }
-
   onClickAdventure(adv){
-    this.props.pickAdventure(adv);
+    this.props.chooseAdventure(adv);
     // this.props.dispatch(viewAdventure(i))
     this.props.navigation.navigate("Adventure");
   }
+
   deleteAdventure(adv){
-    this.props.delAdventure(adv);
+    this.props.deleteAdventure(adv);
   }
 
   onNewAdventure(){
-    this.props.navigation.navigate("NewAdventure");
-  }
-  edit(){
-    this.setState({ edit: !this.state.edit });
-  }
-  editAdventure(adv){
-    this.props.pickAdventure(adv);
-    this.props.setEditMode();
-    this.props.navigation.navigate("NewAdventure");
+    this.props.newAdventure({});
+    this.props.navigation.navigate("EditAdventure");
   }
 
-  async componentDidMount() {
+  editAdventure(adv){
+    this.props.chooseAdventure(adv);
+    this.props.navigation.navigate("EditAdventure");
+  }
+
+  async componentWillMount() {
     await this.props.getAdventures();
   }
 
   render() {
     const { adventures } = this.props;
-    const newadv = [];
-    for (const index in adventures) {
-      newadv.push(adventures[index]);
-    }
-    // const { forms } = this.state;
-      return (
-          <View style={{ flex: 1 }}>
-            <TabBarNavigation
-              navigate = {() => { this.props.navigation.openDrawer() ; }}
-              edit = {() => { this.edit() ; }}/>
-            <ScrollView>
-              {newadv ? newadv.map((adv, i) =>
-                <Adventure
-                  key={i}
-                  props={{
-                    ...adv,
-                    onPress: () => this.onClickAdventure(adv)
-                  }}/>)
-                : null }
-            </ScrollView>
-            <Fab
-              source={newAdventureImage}
-              onPress={() => this.onNewAdventure()}
-            />
-          </View>
-        )
-    }
-  }
 
-const mapStateToProps = (state) => ({
-  adventures: state.adventures.list,
-  chosen: state.adventures.chosen
+    return (
+      <View style={{ flex: 1 }}>
+        <ScrollView>
+          {(adventures === undefined) ? null
+            : adventures.map((adv, i) =>
+              <Adventure
+                key={i}
+                props={{
+                  ...adv,
+                  onPress: () => this.onClickAdventure(adv)
+                }}/>)}
+        </ScrollView>
+        <Fab
+          source={newAdventureImage}
+          onPress={() => this.onNewAdventure()}
+        />
+      </View>
+    );
+  }
+}
+
+const mapStateToProps = ({ adventures }) => ({
+  adventures: adventures.list,
+  chosen: adventures.chosen
 });
 
-export default connect(mapStateToProps, {
-  delAdventure: delAdventure,
-  pickAdventure: pickAdventure,
-  getAdventures: getAdventures,
-  setEditMode: setEditMode
-})(Adventures);
+const mapDispatchToProps = dispatch => ({
+  newAdventure: () => dispatch(newAdventure()),
+  deleteAdventure: index => dispatch(deleteAdventure(index)),
+  chooseAdventure: index => dispatch(chooseAdventure(index)),
+  getAdventures: () => dispatch(getAdventures())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Adventures);

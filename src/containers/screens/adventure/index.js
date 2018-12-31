@@ -19,18 +19,19 @@ import {
   Input,
   MainMenuButton
 } from "../../../components/Igor";
-import { setEdit } from "../../../reducers/adv/index";
 import styles from "./styles";
 import Colors from "../../../styles/colors";
+
 import { Avatar, FormLabel, Button, Slider, List, ListItem } from "react-native-elements";
 import { addPlayer, getPlayers, setNextSession, beginSession, setChosenAdventure } from "../../../actions/adventure";
 import { heroes, avatars } from "../../../images";
+import { setEdit } from "../../../actions/adventure";
+
 const attack = "ataque";
 const flee = "fugir";
-
-
 const newsessionimage = require("../../../images/buttons/add-session.png");
 const newplayerimage = require("../../../images/buttons/add-player.png");
+
 class AdventureScreen extends React.Component {
   constructor(props){
     super(props);
@@ -55,12 +56,10 @@ class AdventureScreen extends React.Component {
   edit(){
     this.props.navigation.navigate("EditAdv");
   }
-  dia(dia){
-    this.setState({ dia });
-  }
-  mes(mes){
-    this.setState({ mes });
-  }
+
+  dia = dia => this.setState({ dia });
+  mes = mes => this.setState({ mes });
+
   async createsession(){
     this.setState({ createSession: false });
     await this.props.setNextSession( this.props.chosen.id, `${this.state.dia}/${this.state.mes}`);

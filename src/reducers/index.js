@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import userReducer from "./user";
-import advReducer from "./adv";
+import adventureReducer from "./adventures";
 
 import combatReducer from "./combat";
 import sessionReducer from "./session";
@@ -8,7 +8,7 @@ import sessionReducer from "./session";
 
 export default combineReducers({
   user: userReducer,
-  adventures: advReducer,
+  adventures: adventureReducer,
   combat: combatReducer,
   session: sessionReducer
 });

@@ -3,12 +3,11 @@ import LoginScreen from "./login";
 import StartScreen from "./start";
 import AccountScreen from "./account";
 import AdventuresScreen from "./adventures";
-import NewAdventureScreen from "./newadventure";
+import EditAdventureScreen from "./editadventure";
 import AdventureScreen from "./adventure";
 import BooksScreen from "./books";
 import ConfigurationsScreen from "./configurations";
 import NotificationsScreen from "./notifications";
-import EditAdventureScreen from "./editingadv";
 import CombatScreen from "./combat";
 import SessionScreen from "./session";
 
@@ -18,7 +17,6 @@ export {
   StartScreen,
   AccountScreen,
   AdventuresScreen,
-  NewAdventureScreen,
   BooksScreen,
   ConfigurationsScreen,
   NotificationsScreen,

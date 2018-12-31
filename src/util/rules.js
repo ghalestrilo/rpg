@@ -1,7 +1,3 @@
-
-
-
-
 // Combat Logic
 export const actionTypes = {
   ability: "habilidade",
@@ -19,12 +15,6 @@ export const cannotPlay = actor =>
 
 export const capMax = max => value => (value > max ? max : value);
 export const capMin = min => value => (value < min ? min : value);
-
-export const modifyAt = (index, arr) =>
-  callback => arr.map(
-    (element, i) => ((i === index)
-      ? callback(element)
-      : element));
 
 export const applyAction = action =>
   actor => checkDeath({

@@ -25,6 +25,10 @@ const options = [
   {
     title: "CADASTRO",
     destination: "Signup"
+  },
+  {
+    title: "skip",
+    destination: "Adventures"
   }
 ];
 
