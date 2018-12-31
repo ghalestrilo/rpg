@@ -66,7 +66,8 @@ const AdventureStack = createStackNavigator(
 
 const MainTabNavigator = createMaterialTopTabNavigator(
   {
-    Adventures: AdventureStack
+    Adventures: AdventureStack,
+    Combat: CombatScreen
   },
   {
     initialRouteName: "Adventures"

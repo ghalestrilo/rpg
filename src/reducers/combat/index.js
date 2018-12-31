@@ -9,9 +9,10 @@ import {
 import {
   applyAction,
   nextplayer,
-  shuffle,
-  modifyAt
+  shuffle
 } from "../../util/rules";
+
+import modifyAt from "../../util/modifyAt";
 
 const combat = (state = initialState, action) => {
   switch(action.type){
