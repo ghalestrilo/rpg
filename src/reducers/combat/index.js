@@ -24,7 +24,6 @@ const combat = {
     player: nextplayer(state.player, state.actors)
   }),
 
-
   [FINISH_COMBAT]: (state, payload) => ({
     ...state,
     ongoing: false,
