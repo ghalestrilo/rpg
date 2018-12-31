@@ -20,7 +20,6 @@ const heartlands = {
   source: require("../../../images/adventures/miniatura_heartlands.png"),
   name: "heartlands"
 };
-
 const images = [
   corvali, krevast, coast, heartlands
 ];

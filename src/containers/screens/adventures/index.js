@@ -14,7 +14,8 @@ import {
 import {
   chooseAdventure,
   getAdventures,
-  deleteAdventure
+  deleteAdventure,
+  newAdventure
 } from "../../../actions/adventure";
 
 const newAdventureImage = require("../../../images/buttons/nova-aventura.png");
@@ -74,6 +75,7 @@ const mapStateToProps = ({ adventures }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  newAdventure: () => dispatch(newAdventure()),
   deleteAdventure: index => dispatch(deleteAdventure(index)),
   chooseAdventure: index => dispatch(chooseAdventure(index)),
   getAdventures: () => dispatch(getAdventures())

@@ -3,6 +3,7 @@ import {
   REQUEST_ERROR,
   REQUEST_GET_ADVENTURES,
   RECEIVE_GET_ADVENTURES,
+  NEW_ADVENTURE,
   DELETE_ADVENTURE,
   RECEIVE_GET_PLAYERS,
   REQUEST_GET_PLAYERS,
@@ -18,6 +19,11 @@ import {
 
 export const requestError = error => ({
   type: REQUEST_ERROR,
+  payload: error
+});
+
+export const newAdventure = () => ({
+  type: NEW_ADVENTURE,
   payload: error
 });
 

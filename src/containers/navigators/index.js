@@ -31,9 +31,8 @@ const LoginStack = createStackNavigator(
 const AdventureStack = createStackNavigator(
   {
     Adventures: AdventuresScreen,
-    NewAdventure: NewAdventureScreen,
+    EditAdventure: EditAdventureScreen,
     Adventure: AdventureScreen,
-    EditAdv: EditAdventureScreen,
     Session: SessionScreen,
     Combat: CombatScreen
   },
