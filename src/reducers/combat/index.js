@@ -11,38 +11,26 @@ import {
   nextplayer,
   shuffle
 } from "../../util/rules";
-
 import modifyAt from "../../util/modifyAt";
+import reducer from "../../util/reducer";
 
-const combat = (state = initialState, action) => {
-  switch(action.type){
+const combat = {
+  [BEGIN_COMBAT]: (state, payload) => buildCombatFromEvent(payload),
 
-  case BEGIN_COMBAT:
-    return buildCombatFromEvent(action.payload);
+  [NEW_EVENT]: (state, payload) => ({
+    ...state,
+    events: [ payload, ...state.events ],
+    actors: modifyAt(payload.target, state.actors)(applyAction(payload.action)),
+    player: nextplayer(state.player, state.actors)
+  }),
 
-  case NEW_EVENT:
-    return {
-      ...state,
-      events: [ action.payload, ...state.events ],
-      actors: modifyAt(action.payload.target, state.actors)(applyAction(action.payload.action)),
-      player: nextplayer(state.player, state.actors)
-    };
 
-  case FINISH_COMBAT:
-    return {
-      ...state,
-      ongoing: false,
-      result: action.payload
-    };
-
-  default:
-    return state;
-  }
+  [FINISH_COMBAT]: (state, payload) => ({
+    ...state,
+    ongoing: false,
+    result: payload
+  })
 };
-
-export default combat;
-
-
 
 const buildCombatFromEvent = event => ({
   actors: shuffle([
@@ -64,3 +52,5 @@ const buildCombatFromEvent = event => ({
   player: 0,
   result: null
 });
+
+export default reducer(combat, initialState);
