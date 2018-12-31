@@ -5,14 +5,11 @@ import {
   AdventuresScreen, AdventureScreen, EditAdventureScreen,
   CombatScreen, SessionScreen
 } from "../screens";
-// import Background from "../../images/background/background.png";
-import { colors } from "../../styles";
 
 import {
+  createAppContainer,
   createSwitchNavigator
-} from "@react-navigation/core";
-
-import { createAppContainer } from "react-navigation";
+} from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 
@@ -20,12 +17,11 @@ const LoginStack = createStackNavigator(
   {
     Start: StartScreen,
     Signup: SignUpScreen,
-    Login: LoginScreen,
-    Combat: CombatScreen // @TEST
+    Login: LoginScreen
   },
   {
     initialRouteName: "Start",
-    navigationOptions: {
+    defaultNavigationOptions: {
       header: null
     }
   }
@@ -42,7 +38,7 @@ const AdventureStack = createStackNavigator(
   },
   {
     initialRouteName: "Adventures",
-    navigationOptions: {
+    defaultNavigationOptions: {
       header: null
     }
   }
