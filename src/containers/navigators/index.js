@@ -9,10 +9,12 @@ import {
 import { colors } from "../../styles";
 
 import {
-  createStackNavigator,
-  createMaterialTopTabNavigator,
   createSwitchNavigator
-} from "react-navigation";
+} from "@react-navigation/core";
+
+import { createAppContainer } from "react-navigation";
+import { createMaterialTopTabNavigator } from "react-navigation-tabs";
+import { createStackNavigator } from "react-navigation-stack";
 
 const LoginStack = createStackNavigator(
   {
@@ -85,4 +87,5 @@ const AppNavigator = createSwitchNavigator(
     initialRouteName: "LoginStack"
   },
 );
-export default AppNavigator;
+
+export default createAppContainer(AppNavigator);
