@@ -23,8 +23,7 @@ export const requestError = error => ({
 });
 
 export const newAdventure = () => ({
-  type: NEW_ADVENTURE,
-  payload: error
+  type: NEW_ADVENTURE
 });
 
 export const beginSession = adventureData => ({

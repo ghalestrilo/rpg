@@ -33,12 +33,12 @@ class Adventures extends React.Component {
 
   onNewAdventure(){
     this.props.newAdventure({});
-    this.props.navigation.navigate("NewAdventure");
+    this.props.navigation.navigate("EditAdventure");
   }
 
   editAdventure(adv){
     this.props.chooseAdventure(adv);
-    this.props.navigation.navigate("NewAdventure");
+    this.props.navigation.navigate("EditAdventure");
   }
 
   async componentWillMount() {
