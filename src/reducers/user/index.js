@@ -1,3 +1,14 @@
+import reducer from "../../util/reducer";
+import {
+  REQUEST_LOGIN,
+  RECEIVE_LOGIN,
+  RECEIVE_LOGIN_ERROR,
+  REQUEST_ADD_USER,
+  RECEIVE_ADD_USER,
+  SIGNUP_FAILURE,
+  LOGOUT
+} from "../../actions/types";
+
 export const initialUser = {
   email: null,
   senha: null,
@@ -7,31 +18,19 @@ export const initialUser = {
   loading: false
 };
 
+const user = {
+  [REQUEST_LOGIN]: state => ({ ...state, loading: true }),
+  [RECEIVE_LOGIN]: (state, payload) => (payload ? payload : { ...payload, loading: false }),
+  [RECEIVE_LOGIN_ERROR]: (state, payload) => (payload ? payload : { ...payload, loading: false }),
+  [REQUEST_ADD_USER]: (state, payload) => (payload ? payload : state),
 
-const user = (state = initialUser, action) => {
-  switch (action.type) {
-  case "REQUEST_LOGIN":
-    return { ...state, loading: true };
-  case "RECEIVE_LOGIN":
-    return action.payload ? action.payload : { ...action.payload, loading: false };
-  case "RECEIVE_LOGIN_ERROR":
-    return action.payload ? action.payload : { ...action.payload, loading: false };
-  case "REQUEST_ADD_USER":
-    return action.payload ? action.payload : state;
+  [RECEIVE_ADD_USER]: (state, payload) => (payload ? payload : state),
 
-  case "RECEIVE_ADD_USER":
-    return action.payload ? action.payload : state;
+  // case "REQUEST_ERROR":
+  //   throw new Error(payload),
 
-  case "REQUEST_ERROR":
-    throw new Error(action.payload);
-
-  case "SIGNUP_FAILURE":
-    return state;
-  case "LOGOUT":
-    return initialUser;
-
-  default: return state;
-  }
+  [SIGNUP_FAILURE]: state => (state),
+  [LOGOUT]: (state, payload) => (initialUser)
 };
 
-export default user;
+export default reducer(user, initialUser);

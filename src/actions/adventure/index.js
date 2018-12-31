@@ -12,6 +12,7 @@ import {
   SET_CHOSEN
 } from "../types";
 
+import arrayFromIndexedObject from "../../util/arrayFromIndexedObject";
 // export const needsLoading = dispatch => type => actionCreator => args => {
 //   dispatch({ type });
 //   dispatch(actionCreator(args));
@@ -43,7 +44,7 @@ export const getAdventures = () => dispatch => {
     .on("value", snapshot => {
       dispatch({
         type: RECEIVE_GET_ADVENTURES,
-        payload: snapshot.val()
+        payload: arrayFromIndexedObject(snapshot.val())
       });
     });
 };

@@ -1,3 +1,7 @@
+import reducer from "../../util/reducer";
+import { avatars } from "../../images";
+import { actionTypes } from "../../util/rules";
+
 const initialState = {
   configuringCombat: false,
   pickingEnemy: false,
@@ -20,8 +24,7 @@ import {
   CLEAR_NEWS,
   BEGIN_SESSION
 } from "../../actions/types";
-import { avatars } from "../../images";
-import { actionTypes } from "../../util/rules";
+
 
 const prepActor = actor => ({
   ...actor,
@@ -35,107 +38,94 @@ const prepActor = actor => ({
     }))
 });
 
-const session = (state = initialState, action) => {
-  switch(action.type){
-  case CONFIGURE_COMBAT:
-    return {
-      ...state,
-      configuringCombat: true,
-      event: {
-        type: "combat",
-        heroes: action.payload.heroes.map(hero => ({ ...hero, picked: true })),
-        enemies: []
-      }
-    };
+const session = {
+  [CONFIGURE_COMBAT]: (state, payload) => ({
+    ...state,
+    configuringCombat: true,
+    event: {
+      type: "combat",
+      heroes: payload.heroes.map(hero => ({ ...hero, picked: true })),
+      enemies: []
+    }
+  }),
 
-  case ADD_ENEMY:
-    return {
-      ...state,
-      pickingEnemy: true
-    };
+  [ADD_ENEMY]: state => ({
+    ...state,
+    pickingEnemy: true
+  }),
 
-  case PICK_ENEMY:
-    return {
-      ...state,
-      pickingEnemy: false,
-      event: {
-        ...state.event,
-        enemies: [
-          state.availableEnemies[action.payload],
-          ...(state.event.enemies || [])
-        ]
-      }
-    };
-
-  case REMOVE_ENEMY:
-    return {
-      ...state,
-      event: {
-        ...state.event,
-        enemies: state.event.enemies.filter(
-          (e, i) => i !== action.payload)
-      }
-    };
-
-  case TOGGLE_HERO:
-    return {
-      ...state,
-      event: {
-        ...state.event,
-        heroes: state.event.heroes.map((character, i) =>
-          (i === action.payload)
-            ? { ...character, picked: !character.picked }
-            : character)
-      }
-    };
-
-  case BEGIN_COMBAT:
-    return {
-      ...state,
-      configuringCombat: false,
-      pickingEnemy: false
-    };
-
-  case BEGIN_SESSION:
-    return {
-      ...state,
-      availableEnemies: Object.values(action.payload.availableEnemies || {}).map(x => prepActor(x)),
-      enemies: Object.values(action.payload.enemies || {})
-        .map(x => prepActor(x))
-        .map(enemy => ({
-          ...enemy,
-          avatar: avatars.enemies[enemy.avatar],
-          picked: true
-        })),
-      heroes: Object.values(action.payload.heroes || {})
-        .map(x => prepActor(x))
-        .map(hero => ({
-          ...hero,
-          avatar: avatars.heroes[hero.avatar]
-        }))
-    };
-
-  case FINISH_COMBAT:
-    return {
-      ...state,
-      newevent: true,
-      history: [
-        ...state.history,
-        {
-          ...state.event,
-          result: action.payload
-        }
+  [PICK_ENEMY]: (state, payload) => ({
+    ...state,
+    pickingEnemy: false,
+    event: {
+      ...state.event,
+      enemies: [
+        state.availableEnemies[payload],
+        ...(state.event.enemies || [])
       ]
-    };
+    }
+  }),
 
-  case CLEAR_NEWS:
-    return {
-      ...state,
-      newevent: false
-    };
+  [REMOVE_ENEMY]: (state, payload) => ({
+    ...state,
+    event: {
+      ...state.event,
+      enemies: state.event.enemies.filter(
+        (e, i) => i !== payload)
+    }
+  }),
 
-  default: return state;
-  }
+  [TOGGLE_HERO]: (state, payload) => ({
+    ...state,
+    event: {
+      ...state.event,
+      heroes: state.event.heroes.map((character, i) =>
+        (i === payload)
+          ? { ...character, picked: !character.picked }
+          : character)
+    }
+  }),
+
+  [BEGIN_COMBAT]: state => ({
+    ...state,
+    configuringCombat: false,
+    pickingEnemy: false
+  }),
+
+  [BEGIN_SESSION]: (state, payload) => ({
+    ...state,
+    availableEnemies: Object.values(payload.availableEnemies || {}).map(x => prepActor(x)),
+    enemies: Object.values(payload.enemies || {})
+      .map(x => prepActor(x))
+      .map(enemy => ({
+        ...enemy,
+        avatar: avatars.enemies[enemy.avatar],
+        picked: true
+      })),
+    heroes: Object.values(payload.heroes || {})
+      .map(x => prepActor(x))
+      .map(hero => ({
+        ...hero,
+        avatar: avatars.heroes[hero.avatar]
+      }))
+  }),
+
+  [FINISH_COMBAT]: (state, payload) => ({
+    ...state,
+    newevent: true,
+    history: [
+      ...state.history,
+      {
+        ...state.event,
+        result: payload
+      }
+    ]
+  }),
+
+  [CLEAR_NEWS]: state => ({
+    ...state,
+    newevent: false
+  })
 };
 
-export default session;
+export default reducer(session, initialState);
