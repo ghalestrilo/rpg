@@ -15,7 +15,7 @@ export const initialAdventures = {
   chosen: {},
   list: [],
   edit: "",
-  heroes: {},
+  heroes: [],
 
   editing: false,
   index: 0
@@ -36,6 +36,7 @@ const adventures = {
     loading: false
   }),
 
+  // [REQUEST_DELETE_ADVENTURE]: state => ({ ...state, loading: true }),
   [DELETE_ADVENTURE]: state => state,
 
   [CHOOSE_ADVENTURE]: (state, payload) => ({

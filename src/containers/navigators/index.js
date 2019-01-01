@@ -12,6 +12,7 @@ import {
 } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
+import { colors } from "../../styles";
 
 const LoginStack = createStackNavigator(
   {
@@ -39,7 +40,8 @@ const AdventureStack = createStackNavigator(
   {
     initialRouteName: "Adventures",
     defaultNavigationOptions: {
-      header: null
+      header: null,
+      backgroundColor: colors.background
     }
   }
 );
