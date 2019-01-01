@@ -49,12 +49,22 @@ export const getAdventures = () => dispatch => {
     });
 };
 
-export const setChosenAdventure = adventure => dispatch => {
+export const chooseAdventure = adventure => dispatch => {
   dispatch({ type: REQUEST_GET_ADVENTURES });
   return API.ref(`/adventures/${adventure.id}`)
     .on("value", snapshot =>
       dispatch({
         type: SET_CHOSEN,
+        payload: snapshot.val()
+      }));
+};
+
+export const getPlayers = adventureID => dispatch => {
+  dispatch({ type: REQUEST_GET_PLAYERS });
+  return API.ref(`/adventures/${adventureID}/heroes`)
+    .on("value", snapshot =>
+      dispatch({
+        type: RECEIVE_GET_PLAYERS,
         payload: snapshot.val()
       }));
 };
@@ -82,12 +92,3 @@ export const addPlayer = (adventureID, newPlayer) => dispatch =>
     .then(() => getPlayers(adventureID))
     .catch(error => dispatch(requestError(error)));
 
-export const getPlayers = adventureID => dispatch => {
-  dispatch({ type: REQUEST_GET_PLAYERS });
-  return API.ref(`/adventures/${adventureID}/heroes`)
-    .on("value", snapshot =>
-      dispatch({
-        type: RECEIVE_GET_PLAYERS,
-        payload: snapshot.val()
-      }));
-};

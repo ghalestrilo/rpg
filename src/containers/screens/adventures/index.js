@@ -21,44 +21,43 @@ import {
 const newAdventureImage = require("../../../images/buttons/nova-aventura.png");
 
 class Adventures extends React.Component {
-  onClickAdventure(adv){
+  onClickAdventure = (adv) => {
     this.props.chooseAdventure(adv);
     // this.props.dispatch(viewAdventure(i))
     this.props.navigation.navigate("Adventure");
   }
 
-  deleteAdventure(adv){
-    this.props.deleteAdventure(adv);
-  }
+  // deleteAdventure = (adv) => {
+  //   this.props.deleteAdventure(adv);
+  // }
 
-  onNewAdventure(){
+  onNewAdventure = () => {
     this.props.newAdventure({});
     this.props.navigation.navigate("EditAdventure");
   }
 
-  editAdventure(adv){
+  editAdventure = (adv) => {
     this.props.chooseAdventure(adv);
     this.props.navigation.navigate("EditAdventure");
   }
 
-  async componentWillMount() {
-    await this.props.getAdventures();
-  }
+  componentWillMount = async () => await this.props.getAdventures();
 
   render() {
-    const { adventures } = this.props;
+    const { adventures, userID } = this.props;
 
     return (
       <View style={{ flex: 1 }}>
         <ScrollView>
-          {(adventures === undefined) ? null
-            : adventures.map((adv, i) =>
-              <Adventure
-                key={i}
-                props={{
-                  ...adv,
-                  onPress: () => this.onClickAdventure(adv)
-                }}/>)}
+          {adventures && adventures.map((adv, i) =>
+            <Adventure
+              key={i}
+              editable={adv.masterID && adv.masterID === userID}
+              props={{
+                ...adv,
+                onPress: () => this.onClickAdventure(adv)
+              }}/>)
+          }
         </ScrollView>
         <Fab
           source={newAdventureImage}
@@ -69,16 +68,16 @@ class Adventures extends React.Component {
   }
 }
 
-const mapStateToProps = ({ adventures }) => ({
-  adventures: adventures.list,
-  chosen: adventures.chosen
+const mapStateToProps = ({ adventures, user }) => ({
+  userID: user.id,
+  adventures: adventures.list
 });
 
 const mapDispatchToProps = dispatch => ({
   newAdventure: () => dispatch(newAdventure()),
+  getAdventures: () => dispatch(getAdventures()),
   deleteAdventure: index => dispatch(deleteAdventure(index)),
-  chooseAdventure: index => dispatch(chooseAdventure(index)),
-  getAdventures: () => dispatch(getAdventures())
+  chooseAdventure: index => dispatch(chooseAdventure(index))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Adventures);
