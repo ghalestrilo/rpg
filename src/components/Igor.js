@@ -152,7 +152,7 @@ export const getImageFromString = imageName => {
   - Barra de progressao (inline)
 */
 
-export const Adventure = ({ props }) => {
+export const Adventure = ({ props, onPress }) => {
   if (!props) return null;
   // const progress = (props.progress < 100)
   //   ? props.progress
@@ -163,7 +163,7 @@ export const Adventure = ({ props }) => {
       style={{
         margin: 4
       }}
-      onPress={() => props.onPress()}>
+      onPress={onPress}>
       <ImageBackground
         source={getImageFromString(props.image)}
         imageStyle={{

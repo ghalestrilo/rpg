@@ -9,11 +9,13 @@ import {
   REQUEST_GET_PLAYERS,
   SET_SESSION,
   BEGIN_SESSION,
-  SET_CHOSEN
+  CHOOSE_ADVENTURE
 } from "../types";
 
 import arrayFromIndexedObject from "../../util/arrayFromIndexedObject";
-// export const needsLoading = dispatch => type => actionCreator => args => {
+
+
+// export const apiRequest = type => actionCreator => args => {
 //   dispatch({ type });
 //   dispatch(actionCreator(args));
 // };
@@ -54,7 +56,7 @@ export const chooseAdventure = adventure => dispatch => {
   return API.ref(`/adventures/${adventure.id}`)
     .on("value", snapshot =>
       dispatch({
-        type: SET_CHOSEN,
+        type: CHOOSE_ADVENTURE,
         payload: snapshot.val()
       }));
 };
@@ -65,7 +67,7 @@ export const getPlayers = adventureID => dispatch => {
     .on("value", snapshot =>
       dispatch({
         type: RECEIVE_GET_PLAYERS,
-        payload: snapshot.val()
+        payload: arrayFromIndexedObject(snapshot.val())
       }));
 };
 

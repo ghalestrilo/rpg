@@ -3,25 +3,34 @@ import { connect } from "react-redux";
 import styles from "./styles";
 import Colors from "../../../styles/colors";
 
+import Modal from "react-native-modal";
 import {
   SafeAreaView,
   View,
-  Text,
   TouchableOpacity,
   ScrollView,
   TextInput,
-  Modal,
   Alert,
   Picker
 } from "react-native";
-import Modal_2 from "react-native-modal";
+
 import {
   Fab,
   Input,
   MainMenuButton
 } from "../../../components/Igor";
 
-import { Avatar, FormLabel, Button, Slider, List, ListItem } from "react-native-elements";
+import {
+  Avatar,
+  Button,
+  Divider,
+  FormLabel,
+  List,
+  ListItem,
+  Slider,
+  Text
+} from "react-native-elements";
+
 import { addPlayer, getPlayers, setNextSession, beginSession, chooseAdventure } from "../../../actions/adventure";
 import { heroes, avatars } from "../../../images";
 import { setEdit } from "../../../actions/adventure";
@@ -31,46 +40,65 @@ const newplayerimage = require("../../../images/buttons/add-player.png");
 
 const newSession = () => {};
 class AdventureScreen extends React.Component {
-
-  componentDidMount = async () => await this.props.getPlayers(this.props.chosen.id);
-  edit = () => this.props.navigation.navigate("EditAdv");
-
-  newSession = () => {
-    this.props.dispatch(newSession());
-    this.props.navigation.navigate("Session");
-  }
+  componentDidMount = () => this.props.getPlayers(this.props.chosen.id);
 
   render = () => {
-    const { chosen, heroes, navigation } = this.props;
+    const { chosen, setting, loading, heroes, navigation } = this.props;
+    const {
+      newSession
+    } = this.props;
 
     return <View>
-      <Text h1>{chosen.name}</Text>
+      <Text h2 style={{ textAlign: "center" }}>{chosen.title}</Text>
       <ScrollView>
 
-        <Text h2>Heroes</Text>
-        {
-          heroes && heroes.map((hero, i) =>
-            <ListItem
-              hideChevron
-              key={`heroes_${i}`}
-              title={hero.name}
-              avatar={hero.avatar}
-              disabled={hero.dead}
-              onPress={() => onPressCharacter(hero)}
-            />)
+        <Text h3>Team</Text>
+        { !loading && heroes && heroes.map((hero, i) =>
+          <ListItem
+            hideChevron
+            key={`heroes_${i}`}
+            title={hero.name}
+            avatar={hero.avatar}
+            disabled={hero.dead}
+            onPress={() => onPressCharacter(hero)}
+          />)
+        }
+
+        <Divider/>
+
+        <Text h3>Setting</Text>
+        { !loading && setting &&
+          <ListItem
+            title={setting.title}
+            avatar={setting.avatar}
+            onPress={() => {
+              navigation.navigate("Setting");
+            }}
+          />
+        }
+
+        { !loading && heroes && heroes.map((hero, i) =>
+          <ListItem
+            hideChevron
+            key={`heroes_${i}`}
+            title={hero.name}
+            avatar={hero.avatar}
+            disabled={hero.dead}
+            onPress={() => onPressCharacter(hero)}
+          />)
         }
         {/* <Fab
           source={newplayerimage}
           onPress={() => { this.setModalVisible(); }}
         /> */}
-        <Fab
-          source={newsessionimage}
-          onPress={() => {
-            this.props.beginSession(this.props.chosen);
-            navigation.navigate("Session");
-          }}
-        />
-      </ScrollView>;
+      </ScrollView>
+      <Fab
+        source={newsessionimage}
+        onPress={() => {
+          newSession();
+          navigation.navigate("Session");
+        }}
+      />
     </View>;
 
   }
@@ -78,7 +106,13 @@ class AdventureScreen extends React.Component {
 
 const mapStateToProps = ({ adventures }) => ({
   chosen: adventures.chosen,
+  loading: adventures.loading,
   heroes: adventures.heroes
+});
+
+const mapDispatchToProps = dispatch => ({
+  newSession: () => dispatch(newSession()),
+  getPlayers: adventureID => dispatch(getPlayers(adventureID))
 });
 
 const mapActionsToProps = {
@@ -89,7 +123,7 @@ const mapActionsToProps = {
   beginSession: beginSession,
   chooseAdventure: chooseAdventure
 };
-export default connect(mapStateToProps, mapActionsToProps)(AdventureScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AdventureScreen);
 
 
 
@@ -108,7 +142,7 @@ const err = () => {
     return (
       IgorBackground(
         <SafeAreaView style = {{ flex: 1 }}>
-          <Modal_2
+          <Modal
             visible={this.state.createSession}
             style = {styles.sessionCreate}>
             <View style={{ margin: "5%" }}>
@@ -137,7 +171,7 @@ const err = () => {
                 title = "CRIAR"
               />
             </View>
-          </Modal_2>
+          </Modal>
           <View style = {{ flex: 1 }}>
             <TabBarNavigation
               navigate = {() => { this.props.navigation.openDrawer() ; }}
