@@ -1,4 +1,9 @@
-export default{
+
+
+export default {
+  background: "rgb(80,80,80)",
+
+
   yellow: "rgb(220,220,40)",
   red: "rgb(220,40,40)",
   green: "rgb(40,220,40)",
