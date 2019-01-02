@@ -73,17 +73,6 @@ class AdventureScreen extends React.Component {
             }}
           />
         }
-
-        { !loading && heroes && heroes.map((hero, i) =>
-          <ListItem
-            hideChevron
-            key={`heroes_${i}`}
-            title={hero.name}
-            avatar={hero.avatar}
-            disabled={hero.dead}
-            onPress={() => onPressCharacter(hero)}
-          />)
-        }
         {/* <Fab
           source={newplayerimage}
           onPress={() => { this.setModalVisible(); }}

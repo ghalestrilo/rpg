@@ -3,6 +3,7 @@ import {
   AccountScreen, BooksScreen, ConfigurationsScreen, NotificationsScreen, 
 
   AdventuresScreen, AdventureScreen, EditAdventureScreen,
+  SettingsScreen,
   CombatScreen, SessionScreen
 } from "../screens";
 
@@ -69,6 +70,7 @@ const AdventureStack = createStackNavigator(
 const MainTabNavigator = createMaterialTopTabNavigator(
   {
     Adventures: AdventureStack,
+    Settings: SettingsScreen,
     Combat: CombatScreen
   },
   {
