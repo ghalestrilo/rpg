@@ -109,130 +109,133 @@ const state = {
     }
   ],
 
-  availableEnemies: {
-    Robo: {
-      avatar: avatars.enemies.robo,
-      name: "Robo",
-      hero: false,
-      maxhp: 100,
-      status: {
-        hp: 100,
-        effects: []
-      },
-      actions: {
-        fugir: {
-          type: flee,
-          mod: 0
+  setting: {
+    title: "DnD",
+    enemies: {
+      Robo: {
+        avatar: avatars.enemies.robo,
+        name: "Robo",
+        hero: false,
+        maxhp: 100,
+        status: {
+          hp: 100,
+          effects: []
         },
-        ataque: {
-          type: attack,
-          mod: 3,
-          damage: 15
+        actions: {
+          fugir: {
+            type: flee,
+            mod: 0
+          },
+          ataque: {
+            type: attack,
+            mod: 3,
+            damage: 15
+          }
         }
-      }
-    },
-    Javali: {
-      avatar: avatars.enemies.javali,
-      name: "Javali",
-      hero: false,
-      maxhp: 50,
-      status: {
-        hp: 50,
-        effects: []
       },
-      actions: {
-        fugir: {
-          type: flee,
-          mod: 0
+      Javali: {
+        avatar: avatars.enemies.javali,
+        name: "Javali",
+        hero: false,
+        maxhp: 50,
+        status: {
+          hp: 50,
+          effects: []
         },
-        ataque: {
-          type: attack,
-          mod: 3,
-          damage: 6
+        actions: {
+          fugir: {
+            type: flee,
+            mod: 0
+          },
+          ataque: {
+            type: attack,
+            mod: 3,
+            damage: 6
+          }
         }
-      }
-    },
-    Tigre: {
-      avatar: avatars.enemies.tigre,
-      name: "Tigre",
-      hero: false,
-      maxhp: 70,
-      status: {
-        hp: 70,
-        effects: []
       },
-      actions: {
-        fugir: {
-          type: flee,
-          mod: 0
+      Tigre: {
+        avatar: avatars.enemies.tigre,
+        name: "Tigre",
+        hero: false,
+        maxhp: 70,
+        status: {
+          hp: 70,
+          effects: []
         },
-        ataque: {
-          type: attack,
-          mod: 3,
-          damage: 20
+        actions: {
+          fugir: {
+            type: flee,
+            mod: 0
+          },
+          ataque: {
+            type: attack,
+            mod: 3,
+            damage: 20
+          }
         }
-      }
-    },
-    Urso: {
-      avatar: avatars.enemies.urso,
-      name: "Urso",
-      hero: false,
-      maxhp: 200,
-      status: {
-        hp: 200,
-        effects: []
       },
-      actions: {
-        fugir: {
-          type: flee,
-          mod: 0
+      Urso: {
+        avatar: avatars.enemies.urso,
+        name: "Urso",
+        hero: false,
+        maxhp: 200,
+        status: {
+          hp: 200,
+          effects: []
         },
-        ataque: {
-          type: attack,
-          mod: 3,
-          damage: 10
+        actions: {
+          fugir: {
+            type: flee,
+            mod: 0
+          },
+          ataque: {
+            type: attack,
+            mod: 3,
+            damage: 10
+          }
         }
-      }
-    },
-    Ogro: {
-      avatar: avatars.enemies.ogro,
-      name: "Ogro",
-      hero: false,
-      maxhp: 1000,
-      status: {
-        hp: 1000,
-        effects: []
       },
-      actions: {
-        fugir: {
-          type: flee,
-          mod: 0
+      Ogro: {
+        avatar: avatars.enemies.ogro,
+        name: "Ogro",
+        hero: false,
+        maxhp: 1000,
+        status: {
+          hp: 1000,
+          effects: []
         },
-        ataque: {
-          type: attack,
-          mod: 3,
-          damage: 15
+        actions: {
+          fugir: {
+            type: flee,
+            mod: 0
+          },
+          ataque: {
+            type: attack,
+            mod: 3,
+            damage: 15
+          }
         }
-      }
-    },
-    Troll: {
-      avatar: avatars.enemies.troll,
-      name: "Troll",
-      hero: false,
-      maxhp: 150,
-      status: {
-        hp: 150,
-        effects: []
       },
-      actions: {
-        fugir: {
-          type: flee,
-          mod: 0
+      Troll: {
+        avatar: avatars.enemies.troll,
+        name: "Troll",
+        hero: false,
+        maxhp: 150,
+        status: {
+          hp: 150,
+          effects: []
         },
-        ataque: {
-          type: attack,
-          mod: 3,
-          damage: 30
+        actions: {
+          fugir: {
+            type: flee,
+            mod: 0
+          },
+          ataque: {
+            type: attack,
+            mod: 3,
+            damage: 30
+          }
         }
       }
     }

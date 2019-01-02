@@ -60,7 +60,7 @@ const session = {
     event: {
       ...state.event,
       enemies: [
-        state.availableEnemies[payload],
+        state.setting.enemies[payload],
         ...(state.event.enemies || [])
       ]
     }
@@ -94,14 +94,21 @@ const session = {
 
   [BEGIN_SESSION]: (state, payload) => ({
     ...state,
-    availableEnemies: Object.values(payload.availableEnemies || {}).map(x => prepActor(x)),
-    enemies: Object.values(payload.enemies || {})
-      .map(x => prepActor(x))
-      .map(enemy => ({
-        ...enemy,
-        avatar: avatars.enemies[enemy.avatar],
-        picked: true
-      })),
+
+    setting: {
+      ...payload.setting,
+      enemies: Object.values(payload.setting.enemies || {})
+        .map(x => prepActor(x))
+    },
+
+    // enemies: Object.values(payload.enemies || {})
+    //   .map(x => prepActor(x))
+    //   .map(enemy => ({
+    //     ...enemy,
+    //     avatar: avatars.enemies[enemy.avatar],
+    //     picked: true
+    //   })),
+
     heroes: Object.values(payload.heroes || {})
       .map(x => prepActor(x))
       .map(hero => ({

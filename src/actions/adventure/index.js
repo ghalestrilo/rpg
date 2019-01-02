@@ -14,12 +14,6 @@ import {
 
 import arrayFromIndexedObject from "../../util/arrayFromIndexedObject";
 
-
-// export const apiRequest = type => actionCreator => args => {
-//   dispatch({ type });
-//   dispatch(actionCreator(args));
-// };
-
 export const requestError = error => ({
   type: REQUEST_ERROR,
   payload: error
@@ -93,4 +87,3 @@ export const addPlayer = (adventureID, newPlayer) => dispatch =>
     .set(newPlayer)
     .then(() => getPlayers(adventureID))
     .catch(error => dispatch(requestError(error)));
-

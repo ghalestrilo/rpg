@@ -82,10 +82,10 @@ const CombatEditor = ({
 const SessionScreen = ({
   configuringCombat,
   pickingEnemy,
-  availableEnemies,
 
   event,
   history,
+  setting,
 
   configureCombat,
   addEnemy,
@@ -100,7 +100,7 @@ const SessionScreen = ({
         ? <Picker
           style={style.combatEditor}
           title={"Adicionar Inimigo"}
-          options={availableEnemies || {}}
+          options={setting.enemies || {}}
           pick={i => pickEnemy(i)}
           hold={() => {}} // more info
         />
