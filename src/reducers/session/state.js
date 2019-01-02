@@ -3,7 +3,6 @@ import { actionTypes } from "../../util/rules";
 const { ability, spell, attack, flee, item } = actionTypes;
 
 
-
 const state = {
   heroes: [
     {

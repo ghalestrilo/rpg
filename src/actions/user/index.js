@@ -1,4 +1,3 @@
-// Carregamentos assincronos da DB virao aqui
 import { database as API } from "../../util";
 import {
   FETCH_USER,

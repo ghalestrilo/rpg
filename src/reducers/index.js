@@ -1,14 +1,15 @@
 import { combineReducers } from "redux";
-import userReducer from "./user";
-import adventureReducer from "./adventures";
-
-import combatReducer from "./combat";
-import sessionReducer from "./session";
+import adventures from "./adventures";
+import combat from "./combat";
+import session from "./session";
+import settings from "./settings";
+import user from "./user";
 
 
 export default combineReducers({
-  user: userReducer,
-  adventures: adventureReducer,
-  combat: combatReducer,
-  session: sessionReducer
+  adventures,
+  combat,
+  session,
+  settings,
+  user
 });

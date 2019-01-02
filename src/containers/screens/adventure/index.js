@@ -29,9 +29,6 @@ import {
   Text
 } from "react-native-elements";
 
-import { heroes, avatars } from "../../../images";
-import { setEdit } from "../../../actions/adventure";
-
 import { addPlayer, getPlayers, beginSession } from "../../../actions/adventure";
 
 const newsessionimage = require("../../../images/buttons/add-session.png");
