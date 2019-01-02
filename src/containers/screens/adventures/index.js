@@ -67,7 +67,7 @@ const mapDispatchToProps = dispatch => ({
   newAdventure: () => dispatch(newAdventure()),
   getAdventures: () => dispatch(getAdventures()),
   deleteAdventure: index => dispatch(deleteAdventure(index)),
-  chooseAdventure: index => dispatch(chooseAdventure(index))
+  chooseAdventure: (chooseAdventure |> dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Adventures);
