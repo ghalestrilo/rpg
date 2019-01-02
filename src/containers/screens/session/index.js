@@ -49,7 +49,7 @@ class Session extends React.Component {
     return <SessionScreen
       history={this.props.history}
       event={this.props.event || {}}
-      availableEnemies={this.props.availableEnemies}
+      setting={this.props.setting}
 
       configuringCombat={this.props.configuringCombat}
       pickingEnemy={this.props.pickingEnemy}
@@ -65,7 +65,7 @@ class Session extends React.Component {
   }
 }
 
-const mapStateToProps = ({ session, adventure }) => ({
+const mapStateToProps = ({ session, adventures }) => ({
   configuringCombat: session.configuringCombat,
   pickingEnemy: session.pickingEnemy,
 
@@ -74,7 +74,7 @@ const mapStateToProps = ({ session, adventure }) => ({
 
   // These belong to the adventure reducer. Please remove once properly integrated
   heroes: session.heroes,
-  availableEnemies: session.availableEnemies
+  setting: adventures.setting
 });
 
 const mapDispatchToProps = dispatch => ({

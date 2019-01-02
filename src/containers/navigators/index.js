@@ -3,6 +3,7 @@ import {
   AccountScreen, BooksScreen, ConfigurationsScreen, NotificationsScreen, 
 
   AdventuresScreen, AdventureScreen, EditAdventureScreen,
+  SettingsScreen,
   CombatScreen, SessionScreen
 } from "../screens";
 
@@ -10,6 +11,7 @@ import {
   createAppContainer,
   createSwitchNavigator
 } from "react-navigation";
+
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 import { colors } from "../../styles";
@@ -69,6 +71,7 @@ const AdventureStack = createStackNavigator(
 const MainTabNavigator = createMaterialTopTabNavigator(
   {
     Adventures: AdventureStack,
+    Settings: SettingsScreen,
     Combat: CombatScreen
   },
   {

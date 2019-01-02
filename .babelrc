@@ -1,7 +1,6 @@
 {
   "presets": ["babel-preset-expo"],
   "plugins": [
-    "@babel/plugin-proposal-pipeline-operator",
     [
       "@babel/plugin-proposal-pipeline-operator",
       {
@@ -13,7 +12,6 @@
     "development": {
       "plugins": [
         "@babel/plugin-transform-react-jsx-source",
-        "@babel/plugin-proposal-pipeline-operator",
         [
           "@babel/plugin-proposal-pipeline-operator",
           {
